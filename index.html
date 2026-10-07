@@ -3,28 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GYEOL · 문의 및 서비스 안내</title>
+  <meta name="description" content="모아록은 회의 녹음과 가져온 음성 파일을 전사하고, 요약과 할 일을 정리하는 회의 기록 앱입니다.">
+  <title>모아록 | 회의 기록 앱</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23174ed5'/%3E%3Cpath d='M15 38V26m11 19V19m12 14V31m11 9V24' fill='none' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
   <style>
-    body{margin:0;background:#f7f9fc;color:#172235;font:17px/1.8 system-ui,sans-serif}
-    main{max-width:640px;margin:64px auto;padding:24px}
-    h1{font-size:36px;letter-spacing:.04em}
-    a{color:#164bc5;overflow-wrap:anywhere}
-    .notice{padding:20px;background:#fff;border:1px solid #d8dfe9;border-radius:12px}
-    footer{margin-top:40px;color:#526071;font-size:14px}
+    :root{color-scheme:light dark;--bg:#f5f8ff;--fg:#17233a;--muted:#4e5c75;--card:#fff;--line:#d9e1f0;--accent:#174ed5}
+    @media(prefers-color-scheme:dark){:root{--bg:#101827;--fg:#f1f5ff;--muted:#b1bfd7;--card:#18243a;--line:#33415b;--accent:#91b1ff}}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.7 system-ui,-apple-system,"Noto Sans KR",sans-serif}
+    main{max-width:52rem;margin:auto;padding:clamp(2rem,7vw,5rem) 1.5rem 4rem}
+    .brand{font-size:1rem;font-weight:700;color:var(--accent);letter-spacing:.06em}
+    h1{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.2;letter-spacing:-.05em;margin:1.3rem 0}
+    h2{font-size:1.25rem;margin:0 0 .7rem}
+    p{margin:.5rem 0 1rem}
+    .intro{font-size:1.2rem;max-width:40rem;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:3rem 0}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1.4rem}
+    .card p{color:var(--muted);margin-bottom:0}
+    .contact{border-top:1px solid var(--line);padding-top:2rem}
+    .note{color:var(--muted);font-size:.95rem}
+    a{color:var(--accent);overflow-wrap:anywhere}
+    a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    footer{margin-top:3rem;color:var(--muted);font-size:.9rem}
+    @media(max-width:640px){.grid{grid-template-columns:1fr;margin:2rem 0}}
   </style>
 </head>
 <body>
 <main>
-  <h1>GYEOL</h1>
-  <p>회의 기록을 위한 GYEOL 앱의 문의 안내입니다.</p>
-  <h2>문의</h2>
-  <p>운영자: 김승경<br>이메일: <a href="mailto:tmdrud66@gmail.com">tmdrud66@gmail.com</a></p>
-  <div class="notice">
-    <strong>공개 문서 준비 중</strong>
-    <p>개인정보처리방침 및 계정·데이터 삭제 안내는 검토 후 게시할 예정입니다.
-    이 페이지는 개인정보처리방침이나 계정 삭제 안내를 대신하지 않습니다.</p>
-  </div>
-  <footer>GYEOL · 안내 페이지 갱신 2026-10-02</footer>
+  <div class="brand">모아록</div>
+  <h1>회의의 중요한 내용을<br>다시 찾기 쉽게</h1>
+  <p class="intro">모아록은 회의를 녹음하거나 음성 파일을 가져와 전사하고, 요약과 할 일을 정리하는 회의 기록 앱입니다.</p>
+
+  <section class="grid" aria-label="주요 기능">
+    <div class="card"><h2>기록</h2><p>회의를 녹음하거나 기존 음성 파일을 가져옵니다.</p></div>
+    <div class="card"><h2>정리</h2><p>전사문을 확인하고 요약과 할 일을 살펴봅니다.</p></div>
+    <div class="card"><h2>다시 보기</h2><p>필요할 때 지난 회의 내용을 찾아봅니다.</p></div>
+  </section>
+
+  <section class="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">문의</h2>
+    <p>운영자: 김승경<br>이메일: <a href="mailto:tmdrud66@gmail.com">tmdrud66@gmail.com</a></p>
+    <p class="note">녹음 전에 참석자에게 알리고 필요한 동의를 받으세요. 전사와 AI 요약에는 오류가 있을 수 있으므로 중요한 내용은 원본과 대조해 확인해 주세요.</p>
+    <p class="note">개인정보처리방침과 계정·데이터 삭제 안내는 내용과 실제 운영 절차를 확인한 후 게시합니다. 현재 이 페이지는 해당 문서를 대신하지 않습니다.</p>
+  </section>
+  <footer>모아록 · 회의 기록 앱</footer>
 </main>
 </body>
 </html>
