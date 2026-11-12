@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아록 계정·데이터 삭제 요청</title>
+<meta name="description" content="모아록 앱의 계정과 데이터를 삭제하는 방법, 삭제되는 항목과 남는 항목을 안내합니다.">
+<!--
+  Google Play · App Store 가 요구하는 **앱 밖에서 접근 가능한** 계정·데이터 삭제 안내다.
+  앱을 지웠거나 로그인할 수 없는 사람도 읽고 요청할 수 있어야 하므로, 로그인·스크립트·추적
+  없이 이 파일 하나로 끝난다.
+
+  운영자·문의 이메일은 사용자 승인으로 반영했다. 공개 전 정책 검토와 호스팅은 남아 있다
+  (docs/release-remaining-work.md 참고).
+-->
+<style>
+  :root{
+    --bg:#ffffff; --fg:#141a22; --muted:#5a6675; --line:#e3e8ee; --accent:#1f6feb; --card:#f6f8fa;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#081220; --fg:#e8edf3; --muted:#9aa7b6; --line:#1e2b3c; --accent:#7aa7ff; --card:#0e1a2b; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif;}
+  main{max-width:46rem;margin:0 auto;padding:2.5rem 1rem 4rem}
+  h1{font-size:1.6rem;line-height:1.35;margin:0 0 .25rem}
+  h2{font-size:1.15rem;margin:2.25rem 0 .5rem;padding-top:1.25rem;border-top:1px solid var(--line)}
+  p,li{margin:.5rem 0}
+  ul{padding-left:1.2rem}
+  .sub{color:var(--muted);margin:0 0 1.5rem}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:1rem 1.15rem;margin:1rem 0}
+  .steps{counter-reset:s;list-style:none;padding:0}
+  .steps li{counter-increment:s;padding-left:2rem;position:relative}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:.15rem;width:1.4rem;height:1.4rem;
+    border-radius:50%;background:var(--accent);color:#fff;font-size:.85rem;display:grid;place-items:center}
+  a{color:var(--accent)}
+  code{background:var(--card);border:1px solid var(--line);border-radius:.3rem;padding:.1rem .35rem;font-size:.9em}
+  footer{color:var(--muted);font-size:.9rem;margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<main>
+  <h1>모아록 계정·데이터 삭제 요청</h1>
+  <p class="sub">회의록 앱 모아록 (<code>com.skkim01.meetingsupportai</code>)</p>
+  <h2>앱에서 바로 삭제하기</h2>
+  <p>앱에서 직접 계정 삭제를 요청할 수 있습니다. 별도의 보관 유예 기간 없이 삭제 작업을 시작하여 지체 없이 처리하며, 외부 저장소 통신 실패·지연 응답이 있으면 후속 정리가 필요할 수 있습니다. 파일 삭제 확인에 실패하면 계정 삭제를 완료로 처리하지 않고 재시도합니다.</p>
+  <ol class="steps">
+    <li>모아록 앱을 열고 <strong>설정</strong>으로 이동합니다.</li>
+    <li><strong>계정 관리 → 계정 삭제</strong>를 선택합니다.</li>
+    <li>안내를 읽고 <strong>«계정 삭제»</strong>를 입력한 뒤 삭제 버튼을 누릅니다.</li>
+  </ol>
+  <p>회의 목록에서 일반적인 삭제는 휴지통 이동이며 영구 삭제가 아닙니다. 휴지통에서는 자동 삭제하지 않습니다. 회의만 영구 삭제하려면 휴지통에서 해당 회의의 영구 삭제를 선택하세요. 전사·업로드·요약 등 처리 중인 회의는 완료·작업 종료 확인 후 삭제할 수 있습니다.</p>
+  <p>영구 삭제는 Supabase Storage와 Cloudflare R2의 오디오·처리 파일을 확인·삭제한 뒤 회의 기록을 지웁니다. 뒤늦게 도착한 파일은 매시간 예약된 서버 정리에서 다시 삭제를 시도하며, 이 주기가 한 시간 내 삭제 완료를 보장하는 것은 아닙니다. 기기의 녹음 원본과 개인 클라우드 백업은 삭제하지 않습니다.</p>
+  <p>Supabase 회신에 따르면, Supabase의 복구용 백업 스냅샷은 파기 요청 후 최장 30일 이내 영구 파기됩니다. 데이터베이스 백업과 Storage 오디오 객체는 별개입니다. 이 기한은 Supabase가 관리하는 해당 스냅샷에 관한 것으로, Cloudflare R2·기기 원본·개인 클라우드 백업·별도 수동 사본까지 모두 포함하는 기한이 아닙니다.</p>
+  <p>2026년 11월 11일 확인 기준 Supabase 조직은 Free 플랜이며 이용자용 자동 DB 백업·유료 PITR 기능은 제공되지 않습니다. 공급자 내부 사본의 부재를 뜻하지 않습니다. 운영자가 새로 만드는 수동·시험 백업은 목적 종료 시 지체 없이, 통상 생성 후 최대 7일 이내 파기하는 원칙입니다.</p>
+  <p>운영자 관리 사본에는 생성일·파기 예정일과 책임자를 기록합니다. 복원은 격리 환경에서 삭제·정정 이력을 다시 적용하고 외부 저장소까지 확인한 뒤 진행하며, 확인하지 못한 복원본은 서비스에 제공하지 않습니다. 공급자 파기 기한과 기기·개인 클라우드 및 운영자가 관리하는 사본의 보관 기준은 구분합니다.</p>
+  <p>현재 회의·계정 삭제는 ElevenLabs History 삭제 API를 자동 호출하지 않습니다. 공급자에 보관된 음성·전사문의 개별 파기도 원하시면 아래 문의처에 함께 요청해 주세요. 운영자가 대상 처리를 확인해 공급자에게 별도로 접수·추적합니다. 공급자 삭제 접수 후 백업을 포함한 파기 기한은 최장30일이며 시스템 로그 최대90일과 구분됩니다. 공급자 정리의 실패·지연을 모아록 회의 삭제 완료와 혼동해 안내하지 않습니다.</p>
+
+  <h2>앱을 쓸 수 없을 때</h2>
+  <p>앱을 이미 지웠거나 로그인할 수 없다면 이메일로 요청해 주세요.</p>
+  <div class="card">
+    <p><strong>보낼 곳</strong> — <a id="contact" href="mailto:tmdrud66@gmail.com">tmdrud66@gmail.com</a></p>
+    <p><strong>제목</strong> — 계정 삭제 요청</p>
+    <p><strong>본문에 적을 것</strong> — 모아록 가입에 사용한 이메일 주소</p>
+  </div>
+  <p>본인 확인을 위해 가능하면 <strong>가입에 사용한 이메일 주소에서</strong> 보내주세요. 해당 메일에 접근할 수 없거나 대리인이 요청하는 경우에도 문의할 수 있으며, 계정 소유·위임 여부를 확인하는 데 필요한 최소한의 추가 절차를 안내합니다. 비밀번호·API 키·결제 토큰·카드 정보·녹음 원본을 보내지 마세요.</p>
+  <p>요청을 받으면 <strong>영업일 기준 7일 이내</strong>에 처리 결과 또는 진행 상태를 회신합니다. 더 짧은 법정 기한이 적용되면 이를 우선합니다. 본인 확인이나 정리가 지연되면 사유와 후속 일정을 안내합니다.</p>
+
+  <h2>삭제되는 데이터</h2>
+  <ul>
+    <li>계정 정보(이메일, 로그인 정보)</li>
+    <li>모든 회의록 — 전사문, 요약, 할 일, 메모리</li>
+    <li>서버에 보관된 회의 오디오와 전사 처리용 임시 파일</li>
+    <li>용어집, 직업·분야, 회의 언어 등 계정 설정</li>
+    <li>등록한 XLSX·DOCX·HWPX 회의록 템플릿과 서버에 보관된 양식 원본</li>
+    <li>개인 클라우드 연결 정보와 녹음 보관함 목록</li>
+    <li>프로젝트, 모아록에 저장한 일정과 캘린더 연결 정보</li>
+  </ul>
+
+  <h2>삭제되지 않는 데이터</h2>
+  <p>모아록 서버가 가지고 있지 않아 대신 지워드릴 수 없는 것들입니다. 직접 지워주세요.</p>
+  <ul>
+    <li><strong>휴대폰에 저장된 녹음 원본</strong> — 기기에서 직접 삭제해 주세요.</li>
+    <li><strong>개인 클라우드(구글 드라이브 등)에 올린 백업</strong> — 해당 서비스에서 직접 삭제해 주세요.</li>
+    <li><strong>이미 저장·공유한 PDF·Word·Excel·한글(HWPX) 등 내보내기 파일</strong></li>
+    <li><strong>외부 캘린더에 저장한 일정</strong> — 해당 캘린더에서 직접 삭제해 주세요. 단순 연결 해제도 양쪽 사본을 삭제하지 않습니다.</li>
+  </ul>
+  <p><strong>스토어 구독은 계정 삭제로 해지되지 않습니다.</strong> Google Play 의 구독 관리에서 따로 해지해 주세요. 해지하지 않으면 결제가 계속됩니다.</p>
+
+  <h2>삭제 후에도 남는 기록</h2>
+  <p>삭제한 파일이 뒤늦게 서버에 다시 만들어지는 경우가 있습니다. 전송이 늦게 끝나거나, 외부 전사 서비스의 응답이 삭제 뒤에 도착하는 경우입니다. 그런 파일을 찾아서 지우려면 <strong>어느 자리를 지웠는지에 대한 기록</strong>이 남아 있어야 합니다.</p>
+  <p>그래서 삭제 뒤에도 다음 정보만 보관합니다.</p>
+  <ul>
+    <li>회의 식별자와 소유자 식별자(무작위 문자열)</li>
+    <li>삭제한 파일의 저장 위치와 삭제 시각</li>
+    <li>정리 상태와 지연 응답 검증용 제한된 토큰·처리 식별자</li>
+  </ul>
+  <p><strong>여기에는 회의 내용, 전사문, 오디오, 이메일 주소가 포함되지 않습니다.</strong> 남은 파일을 지우는 용도로만 쓰며, 다른 목적으로 사용하거나 제3자에게 제공하지 않습니다.</p>
+  <p>파기 책임자는 운영자 김승경입니다. 매일 정리 상태를 점검하고 매주 보관 필요성을 검토하며 최초 검토는 생성 후 30일 이내 진행합니다. 업로드·외부 작업과 지연 응답의 종료 및 저장소 부재를 확인하면 목적 종료 확인 후 늦어도 7일 이내 최소 기록을 파기하는 원칙입니다. 미확인 건은 사유·담당자·다음 점검일을 남기며 매주 재검토하고, 30일 경과만으로 삭제하지 않습니다.</p>
+  <p>삭제 영수증의 자동 파기는 비활성 상태이며 책임자가 종료 증빙과 저장소 확인 결과를 검토합니다. 법령상 보존이 필요한 계약·청약철회·대금결제·공급 기록은 해당 사건 발생일부터5년, 소비자 불만·분쟁 기록은 처리 종결일부터3년 보관한 뒤 파기합니다. 일반 회의 데이터와 분리해 접근을 제한하며 탈퇴일로 보존 기간을 다시 시작하지 않습니다. 본인 확인 후 열람·사본 제공을 요청할 수 있습니다. 세부 보관 항목·기한과 공급자 처리 범위는 <a href="./privacy-policy.html">개인정보처리방침</a>을 확인해 주세요.</p>
+
+  <h2>문의</h2>
+  <p>서비스 운영자: 김승경</p>
+  <p>삭제 절차나 처리 상태가 궁금하면 위 이메일 주소로 문의해 주세요.</p>
+
+  <footer>
+    <nav aria-label="법적 안내"><a href="./terms.html">이용약관</a> · <a href="./privacy-policy.html">개인정보처리방침</a> · <a href="./account-deletion.html" aria-current="page">계정·데이터 삭제</a></nav>
+    <p>시행일 2026-11-12 · 최종 수정 2026-11-12</p>
+  </footer>
+</main>
+</body>
+</html>
