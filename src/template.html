@@ -80,6 +80,16 @@ img,svg{display:block}
 .chk i.on{background:var(--primary)}
 .wave{display:flex;gap:2px;align-items:center;height:1.4rem}
 .wave i{flex:1;background:var(--primary);border-radius:2px;opacity:.75}
+.ft{display:inline-block;border-radius:.3rem;padding:.05rem .35rem;font-size:.55rem;font-weight:800;color:#fff;background:#1A8FCF}
+.doc-t{width:100%;border-collapse:collapse;font-size:.6rem;margin-top:.4rem}
+.doc-t th,.doc-t td{border:1px solid #C9D3E2;padding:.25rem .35rem;text-align:left;vertical-align:top;line-height:1.35}
+.doc-t th{background:#EEF2F7;width:3.6rem;font-weight:700}
+.doc-t td{background:#F5FAF7}
+.doc-t td.in{background:#fff;color:var(--muted)}
+.ins{background:linear-gradient(135deg,#E3ECFC,#EEF3FD);border-color:#CCDAF6}
+.nums{display:flex;gap:1.4rem;margin-top:.3rem}
+.nums small{display:block;font-size:.58rem;color:var(--muted)}
+.nums b{font-size:1.25rem;font-weight:900;line-height:1.1}
 .mock-note{font-size:.8rem;color:var(--muted);text-align:center;margin-top:1rem}
 .hero .mock-note{color:rgba(255,255,255,.75);position:relative;z-index:1;padding:4.5rem 0 1.5rem;margin:0}
 
@@ -114,7 +124,7 @@ img,svg{display:block}
 .sec-h h2{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;margin:0 0 .6rem;line-height:1.3}
 .sec-h p{color:var(--muted);margin:0}
 .sec-h .label{color:var(--primary)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
 .card{background:var(--bg);border-radius:1.2rem;padding:1.8rem}
 .card .who{font-weight:800;color:var(--primary);font-size:.9rem}
 .card h4{font-size:1.15rem;margin:.6rem 0;line-height:1.45}
@@ -260,7 +270,7 @@ footer .warn{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #26344D;lin
     <div class="facts">
       <div class="fact reveal"><small>요금제와 관계없이<br>같은 전사 품질</small><strong>모든 요금제 동일</strong></div>
       <div class="fact reveal"><small>사용 시간이 모두 소진돼도<br>녹음과 원본 저장은</small><strong>계속 가능</strong></div>
-      <div class="fact reveal"><small>정리한 회의록을<br>업무 문서로</small><strong>PDF · Word</strong></div>
+      <div class="fact reveal"><small>정리한 회의록을<br>우리 회사 양식으로</small><strong>양식 그대로</strong></div>
     </div>
   </div>
 </section>
@@ -344,8 +354,51 @@ footer .warn{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #26344D;lin
       <div class="reveal">
         <span class="no">04 · 질문과 출처</span>
         <h3>답변을 보고<br>근거도 확인하세요.</h3>
-        <p>저장된 회의 내용을 바탕으로 질문하고, 답변과 함께 관련 출처 회의를 확인하세요. 업무 용어를 등록해 두고, 회의록은 PDF·Word로 내보낼 수 있습니다.</p>
+        <p>저장된 회의 내용을 바탕으로 질문하고, 답변과 함께 관련 출처 회의를 확인하세요. 자주 쓰는 업무 용어도 등록해 둘 수 있습니다.</p>
         <span class="bound">AI 답변에는 오류나 누락이 있을 수 있습니다. 판단은 원문과 출처를 보고 사용자가 합니다.</span>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="art reveal"><div class="phone"><div class="screen">
+        <div class="bar"><span>9:41</span><span>●●●</span></div>
+        <div class="scr-h">내 템플릿으로 내보내기</div>
+        <div class="scr-b">
+          <div class="c"><small>양식 선택</small><b>설계 검토 회의록 · HWPX</b></div>
+          <div class="c"><span class="ft">HWPX</span> <b style="display:inline">설계 검토 회의록</b>
+            <table class="doc-t">
+              <tr><th>회의명</th><td>외장재 변경 검토 회의</td></tr>
+              <tr><th>결정 사항</th><td>1. 알루미늄 패널 유지</td></tr>
+              <tr><th>조치 사항</th><td>1. 샘플 2종 발주<br>2. 구조 영향 검토</td></tr>
+              <tr><th>담당 / 기한</th><td>1. 외장팀 · 금요일<br>2. 구조팀 · 미정</td></tr>
+              <tr><th>참석자</th><td class="in">직접 입력</td></tr>
+            </table>
+          </div>
+        </div>
+      </div></div></div>
+      <div class="reveal">
+        <span class="no">05 · 회의록 양식</span>
+        <h3>우리 회사 회의록 양식,<br>그대로 채워 드려요.</h3>
+        <p>회사마다, 회의마다 다른 회의록 양식을 등록해 두세요(XLSX·DOCX·HWPX). 처음 한 번 양식의 칸마다 회의명·요약·결정·할 일·담당자·기한을 연결하면, 이후 회의는 양식 그대로 내용만 채워 내보냅니다. 양식이 없어도 엑셀·한글·PDF·Word로 내보낼 수 있습니다.</p>
+        <span class="bound">칸 연결은 사용자가 직접 고르고, 연결하지 않은 칸과 서식은 원본 그대로 둡니다. 참석자처럼 앱에 없는 정보는 내보낼 때 직접 입력합니다. HWP·DOC·XLS는 지원 형식으로 저장한 뒤 등록해 주세요.</span>
+      </div>
+    </div>
+
+    <div class="feature flip">
+      <div class="art reveal"><div class="phone"><div class="screen">
+        <div class="bar"><span>9:41</span><span>●●●</span></div>
+        <div class="scr-h">홈</div>
+        <div class="scr-b">
+          <div class="c ins"><b>● 이번 주 인사이트</b><small>2개의 대화를 기록했어요.</small>
+            <div class="nums"><div><small>결정 사항</small><b>3</b></div><div><small>액션 아이템</small><b>9</b></div></div></div>
+          <div class="c"><b>● 지난 주 인사이트</b><small>아직 처리하지 못한 액션이 4개 있어요.</small>
+            <div class="nums"><div><small>결정 사항</small><b>5</b></div><div><small>남은 액션</small><b style="color:#AC2D38">4</b></div></div></div>
+          <div class="c"><b>외장재 변경 검토 회의</b><small>오늘 · 00:52:14 · 액션 아이템 5개</small></div>
+        </div>
+      </div></div></div>
+      <div class="reveal">
+        <span class="no">06 · 이번 주와 지난주</span>
+        <h3>지난주에 남은 일까지<br>매주 챙겨 드려요.</h3>
+        <p>홈에서 이번 주에 기록한 회의의 결정과 할 일을, 지난주 회의에서 아직 처리하지 못한 일과 함께 보여 줍니다. 회의가 끝나도 할 일이 잊히지 않게요.</p>
       </div>
     </div>
     <p class="mock-note">화면 예시 · 실제 앱 화면과 다를 수 있습니다</p>
@@ -359,6 +412,7 @@ footer .warn{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #26344D;lin
     <div class="cards">
       <div class="card reveal"><span class="who">정기 회의</span><h4>지난주에 뭐라고 했는지<br>다시 묻지 않아도 돼요</h4><p>주간 회의의 결정과 할 일을 이어서 확인하고, 이전 회의로 바로 돌아갈 수 있어요.</p></div>
       <div class="card reveal"><span class="who">고객·현장 미팅</span><h4>상대의 말에 집중하고<br>정리는 끝나고 하세요</h4><p>녹음은 그대로 두고, 미팅이 끝난 뒤 전사와 요약으로 요청 사항을 정리해요.</p></div>
+      <div class="card reveal"><span class="who">보고용 회의록</span><h4>회사 양식으로<br>다시 옮겨 적지 마세요</h4><p>등록해 둔 회의록 양식에 맞춰 내용을 채우고, 바로 저장하거나 공유해요.</p></div>
       <div class="card reveal"><span class="who">프로젝트 기록</span><h4>결정이 바뀐 이유까지<br>남겨 두세요</h4><p>결정의 상태와 변경 이유를 직접 기록해 두면, 몇 달 뒤에도 맥락을 찾을 수 있어요.</p></div>
     </div>
   </div>
@@ -387,7 +441,7 @@ footer .warn{margin-top:2rem;padding-top:1.5rem;border-top:1px solid #26344D;lin
         <div class="hours">매월 10시간 전사</div>
         <div class="price" data-m="14,900원" data-y="149,000원" data-mu="/ 월" data-yu="/ 년">14,900원<span> / 월</span></div>
         <span class="save" data-y="월간 12개월보다 29,800원 적게"></span>
-        <ul><li>회의 녹음·음성 파일 가져오기</li><li>전사·검토·AI 요약</li><li>결정·할 일 관리, 검색·주제</li><li>PDF·Word 내보내기</li></ul>
+        <ul><li>회의 녹음·음성 파일 가져오기</li><li>전사·검토·AI 요약</li><li>결정·할 일 관리, 검색·주제</li><li>회사 회의록 양식·엑셀·한글·PDF·Word 내보내기</li></ul>
       </div>
       <div class="plan best reveal">
         <span class="flag">회의가 많다면</span>
